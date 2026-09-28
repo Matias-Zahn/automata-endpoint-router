@@ -3,7 +3,7 @@ from automata.fa.dfa import DFA
 from automata.base.exceptions import RejectionException
 
 # 1. Definición del alfabeto y estados base según el documento
-alfabeto = {'health', 'api', 'users', 'ID_VALIDO', 'auth', 'login'}
+alfabeto = {'health', 'api', 'users', 'id_valido', 'auth', 'login'}
 estados = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'qpozo'}
 
 # 2. Construcción de la tabla de transiciones estricta
@@ -12,7 +12,7 @@ transiciones = {
     'q0': {'health': 'q2', 'api': 'q1'},
     'q1': {'users': 'q3', 'auth': 'q5'},
     'q2': {}, 
-    'q3': {'ID_VALIDO': 'q4'},
+    'q3': {'id_valido': 'q4'},
     'q4': {},
     'q5': {'login': 'q6'},
     'q6': {},
@@ -53,7 +53,7 @@ def procesar_ruta(uri):
     
     for segmento in segmentos:
         if regex_id.match(segmento):
-            tokens.append('ID_VALIDO')
+            tokens.append('id_valido')
         else:
             # Se respeta la sensibilidad de caracteres (Case-Sensitive)
             tokens.append(segmento)
@@ -89,3 +89,7 @@ if __name__ == '__main__':
     for ruta in rutas_prueba:
         resultado = procesar_ruta(ruta)
         print(f"Ruta: {ruta:<25} | {resultado}")
+
+
+# Genera una imagen PNG con el diagrama de estados y transiciones
+enrutador_dfa.show_diagram(path='./enrutador_diagrama.png')
