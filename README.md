@@ -24,6 +24,32 @@ El comportamiento del enrutador se define formalmente mediante la siguiente quí
 - **Estado Inicial (q0):** `q0`
 - **Estados de Aceptación (F):** `{q2, q3, q4, q6}`
 
+## Diagramas
+
+### Diagrama generado por `automata-lib`
+
+Este diagrama es la representación exacta del AFD tal como está definido en el código. Fue generado automáticamente por la librería `automata-lib` mediante el método `show_diagram()`. Incluye todas las transiciones explícitas, incluidas las que dirigen hacia el estado de pozo (`qpozo`), lo que garantiza la completitud del autómata.
+
+![Diagrama generado por automata-lib](enrutador_diagrama.png)
+
+---
+
+### Diagrama conceptual (estilo JFLAP)
+
+Este diagrama fue diseñado manualmente para representar el modelo de forma visual e intuitiva, siguiendo la estética de JFLAP. Cada transición utiliza **tokens completos** como símbolos del alfabeto (por ejemplo, `health`, `api`, `users`), tal como los procesa nuestro Lexer. 
+
+> **Nota:** Este diagrama **no es ejecutable en JFLAP**, ya que JFLAP opera carácter por carácter sobre el alfabeto de entrada, y nuestro autómata trabaja con tokens multi-carácter que son el resultado del preprocesamiento léxico.
+
+![Diagrama conceptual estilo JFLAP](JFLAP-Diagrama.png)
+
+---
+
+### Diagrama adaptado para JFLAP (ruta `/health`)
+
+Para demostrar cómo se vería una versión funcional en JFLAP, se adaptó la ruta `/health` para que procese la entrada **carácter por carácter** (es decir, transiciones por `h`, `e`, `a`, `l`, `t`, `h`). Solo se modeló esta ruta como ejemplo representativo, ya que adaptar todas las rutas a este formato haría el diagrama excesivamente extenso y difícil de leer.
+
+![Diagrama adaptado para JFLAP - ruta /health](JFLAP_Diag_Aceptable.png)
+
 ## Requisitos
 
 Para ejecutar este proyecto, asegúrese de contar con los siguientes elementos instalados en su sistema:
